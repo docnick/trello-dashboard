@@ -81,6 +81,15 @@ def get_cards_closed_on_date(cards, date):
             yield card
 
 
+def get_cards_moved_on_date(cards, date):
+
+    for cid, card in cards.items():
+        date_moved = date_utils.get_date(card.get('date'))
+        if date_moved == date:
+            # if the card is still open then it was open on the given date
+            yield card
+
+
 def get_card_ages(cards):
     card_open_ages = []
     for card in cards:
