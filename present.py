@@ -7,7 +7,7 @@ def css_table_formatting():
         """
         <style>
         .rendered_html table {
-            width: 90%;
+            width: 100%;
         }
         
         .rendered_html td, 
@@ -47,7 +47,7 @@ def print_oldest_cards(open_cards):
         """
         <table>
             <tr>
-                <th><h2>Task</h2></th>
+                <th><h2>Card</h2></th>
                 <th><h2>Days old</h2></th>
             </tr>
             <tr>
