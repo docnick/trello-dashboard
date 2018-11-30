@@ -59,14 +59,17 @@ def get_cards_moved_out_of_list(list_id):
         raise Exception('API call failed: {}'.format(r.reason))
 
     cards = json.loads(r.content)
-    card_ids = []
+    card_ids = {}
     for card in cards:
         data = card.get('data')
 
+        print(data)
         if data.get('listAfter'):
-            card_ids.append(data.get('card').get('id'))
+            cid = data.get('card').get('id')
+            data['card']['date'] = card.get('date')
+            card_ids[cid] = data.get('card')
 
-    return set(card_ids)
+    return card_ids
 
 
 def get_trello_boards(trello_user):
@@ -90,3 +93,9 @@ def get_trello_lists(board_id):
         raise Exception('API call failed: {}'.format(r.reason))
 
     return json.loads(r.content)
+
+
+if __name__ == '__main__':
+    cards = get_cards_moved_out_of_list(TRELLO_NEXT_STEPS_LIST_ID)
+    for card in cards.items():
+        print(card)
