@@ -1,4 +1,5 @@
 import trello_metrics
+import date_utils
 from IPython.core.display import display, HTML
 
 
@@ -65,7 +66,7 @@ def create_today_tasks_table(tasks_due_today_count, closed_tasks_due_today_count
     html_table = """
     <table>
       <tr>
-        <th colspan="3"><h1>Today's Tasks</h1></th>
+        <th colspan="3"><h1>Today's Tasks ({})</h1></th>
       </tr>
       <tr>
         <td><h2>Total tasks due</h2></td>
@@ -81,7 +82,7 @@ def create_today_tasks_table(tasks_due_today_count, closed_tasks_due_today_count
         <td colspan="3"><h2>{:.0f}% Complete</h2></td>
       </tr>
     </table>
-    """.format(tasks_due_today_count,
+    """.format(str(date_utils.get_today_date()), tasks_due_today_count,
                closed_tasks_due_today_count,
                open_past_due_tasks_count,
                percent_done * 100.0)
