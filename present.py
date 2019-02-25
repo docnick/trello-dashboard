@@ -43,20 +43,23 @@ def hide_code():
 
 def print_oldest_cards(open_cards):
     old_cards = trello_metrics.get_x_oldest_cards(open_cards)
+    print_cards(old_cards, ["Cards", "Days Old"])
 
+
+def print_cards(card_tuples, colum_headers):
     display(HTML(
         """
         <table>
             <tr>
-                <th><h2>Card</h2></th>
-                <th><h2>Days old</h2></th>
+                <th><h2>{}</h2></th>
+                <th><h2>{}</h2></th>
             </tr>
             <tr>
                 {}
             </tr>
         </table>
-        """.format('</tr><tr>'.join(
-                '<td>{}</td>'.format('</td><td>'.join([card.get('name'), str(age)])) for card, age in old_cards)
+        """.format(colum_headers[0], colum_headers[1], '</tr><tr>'.join(
+                '<td>{}</td>'.format('</td><td>'.join([card.get('name'), str(x)])) for card, x in card_tuples)
         )
     ))
 

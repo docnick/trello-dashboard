@@ -3,6 +3,14 @@ import date_utils
 import api
 
 
+# TODO: ideas for additional metrics / improvements
+# segment next steps by "small" label
+# calculate 5 weekday average completions / day
+# calculate average tasks / day by day of week (e.g. mon, tues, ...)
+# add hover-over on "completed" bars to show what was completed
+
+
+
 #
 # Get due and late tasks
 #
